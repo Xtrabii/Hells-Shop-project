@@ -1,0 +1,22 @@
+.circle{
+    border: 1px solid;
+    border-radius: 50px
+}
+
+.bg{
+    background-color: rgb(247, 247, 247);
+}
+
+.picbg{
+    border-radius: 50px;
+    background-color: white;
+}
+
+.infobg{
+    border-radius: 5px;
+    background-color: white;
+}
+
+.slidecurve{
+    border-radius: 15px;
+}
