@@ -24,3 +24,26 @@
 .cdiscount{
     color: red;
 }
+
+.fa-cart-shopping{
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+}
+
+.nav-profile-cart{
+    position: relative;
+}
+
+.countcart{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 23px;
+    height: 23px;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
