@@ -1,4 +1,4 @@
-var cardproduct = [{
+var cardtop = [{
     id: 1,
     img: 'images/Top1.png',
     name: 'White Hell Collection',
@@ -52,72 +52,18 @@ var cardproduct = [{
     tag: 'New',
     type: 'tops',
     rating: '4.8⭐ | 13.1พัน Ratings | 57.8พัน ขายแล้ว',
-}, {
-    id: 7,
-    img: 'images/bottom1.png',
-    name: 'Cargo Pant',
-    price: 3000,
-    description: 'กางเกง Cargo Collection ใหม่จากทาง Hells Shop' ,
-    tag: 'New',
-    type: 'bottoms',
-    rating: '4.9⭐ | 36.1พัน Ratings | 70.3พัน ขายแล้ว',
-}, {
-    id: 8,
-    img: 'images/bottom2.png',
-    name: 'Black Slacks Without Belt Holes',
-    price: 4000,
-    description: 'กางเกงสแล็กสีดำไม่มีรูเข็มขัด จากทาง Hells Shop' ,
-    tag: 'New',
-    type: 'bottoms',
-    rating: '4.5⭐ | 10.7พัน Ratings | 30.5พัน ขายแล้ว',
-}, {
-    id: 9,
-    img: 'images/bottom3.png',
-    name: 'Black Slacks',
-    price: 5000,
-    description: 'กางเกงสแล็กสีดำ จากทาง Hells Shop' ,
-    tag: 'New',
-    type: 'bottoms',
-    rating: '4.7⭐ | 21.1พัน Ratings | 60.7พัน ขายแล้ว',
-}, {
-    id: 10,
-    img: 'images/bottom4.png',
-    name: 'Black Sweat Pants',
-    price: 5000,
-    description: 'กางเกงวอร์มขายาวสีดำ จากร้าน Hells Shop' ,
-    tag: 'New',
-    type: 'bottoms',
-    rating: '4.8⭐ | 29.9พัน Ratings | 67.4พัน ขายแล้ว',
-}, {
-    id: 11,
-    img: 'images/bottom5.png',
-    name: 'Camouflage Shorts',
-    price: 5000,
-    description: 'กางเกงวอร์มขาสั้นลายพลาง จากร้าน Hells Shop' ,
-    tag: 'New',
-    type: 'bottoms',
-    rating: '4.4⭐ | 9.1พัน Ratings | 36.8พัน ขายแล้ว',
-}, {
-    id: 12,
-    img: 'images/bottom6.png',
-    name: 'Pink Sweat Shorts',
-    price: 5000,
-    description: 'กางเกงวอร์มขาสั้นสีชมพู จากร้าน Hells Shop' ,
-    tag: 'New',
-    type: 'bottoms',
-    rating: '4.7⭐ | 19.7พัน Ratings | 61.8พัน ขายแล้ว',
 }];
 
 $(document).ready(() => {
     var html = '';
-    for (let i = 0; i < cardproduct.length; i++) {
-        html += `<div class="product-item col-6 ${cardproduct[i].type}">
+    for (let i = 0; i < cardtop.length; i++) {
+        html += `<div class="product-item col-6 ${cardtop[i].type}">
                     <div class="card h-100 pop">
-                        <a href="Top1.html"><img src="${cardproduct[i].img}" class="card-img-top" alt="..."></a>
+                        <a href="Top1.html"><img src="${cardtop[i].img}" class="card-img-top" alt="..."></a>
                         <div class="card-body">
-                         <h5><span class="badge text-bg-danger">${cardproduct[i].tag}</span> ${cardproduct[i].name}</h5>
-                        <p class="card-text">${cardproduct[i].description} <br><br><br> <h3>฿${numberWithCommas(cardproduct[i].price)}</h3> </p>
-                        <h6>${cardproduct[i].rating}</h6>
+                         <h5><span class="badge text-bg-danger">${cardtop[i].tag}</span> ${cardtop[i].name}</h5>
+                        <p class="card-text">${cardtop[i].description} <br><br><br> <h3>฿${numberWithCommas(cardtop[i].price)}</h3> </p>
+                        <h6>${cardtop[i].rating}</h6>
                         </div>
                     </div>
                 </div>`;
@@ -138,15 +84,15 @@ function searchitem(elem) {
     console.log(value)
 
     var html = '';
-    for (let i = 0; i < cardproduct.length; i++) {
-        if(cardproduct[i].name.includes(value)) {
-            html += `<div class="product-item col-6 ${cardproduct[i].type}">
+    for (let i = 0; i < cardtop.length; i++) {
+        if(cardtop[i].name.includes(value)) {
+            html += `<div class="product-item col-6 ${cardtop[i].type}">
                             <div class="card h-100 pop">
-                                <a href="Top1.html"><img src="${cardproduct[i].img}" class="card-img-top" alt="..."></a>
+                                <a href="Top1.html"><img src="${cardtop[i].img}" class="card-img-top" alt="..."></a>
                                 <div class="card-body">
-                                <h5><span class="badge text-bg-danger">${cardproduct[i].tag}</span> ${cardproduct[i].name}</h5>
-                                <p class="card-text">${cardproduct[i].description} <br><br><br> <h3>฿${numberWithCommas(cardproduct[i].price)}</h3> </p>
-                                <h6>${cardproduct[i].rating}</h6>
+                                <h5><span class="badge text-bg-danger">${cardtop[i].tag}</span> ${cardtop[i].name}</h5>
+                                <p class="card-text">${cardtop[i].description} <br><br><br> <h3>฿${numberWithCommas(cardtop[i].price)}</h3> </p>
+                                <h6>${cardtop[i].rating}</h6>
                                 </div>
                             </div>
                         </div>`;

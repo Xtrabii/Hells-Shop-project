@@ -49,7 +49,7 @@
       </div>
 
       <form class="col-8 col-lg-auto mb-0 mb-lg-0 me-3 me-lg-3" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <input onkeyup="searchitem(this)" id="search_item" type="search" class="form-control" placeholder="Search..." aria-label="Search">
       </form>
 
       <div class="dropdown text-end">
@@ -203,6 +203,13 @@
         </div>
 
     </div>
+</div>
+
+<!-- detail -->
+<div class="container">
+  <div id="card_toplist" class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+      
+  </div>
 </div>
 
 <!-- Modal -->
