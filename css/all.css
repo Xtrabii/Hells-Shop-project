@@ -4,7 +4,7 @@
 }
 
 .bg{
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(241, 241, 241);
 }
 
 .picbg{
@@ -19,6 +19,10 @@
 
 .slidecurve{
     border-radius: 15px;
+}
+
+.noline{
+    text-decoration: none;
 }
 
 .cdiscount{
@@ -46,4 +50,12 @@
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+.pop{
+    transition: 0.3s;
+}
+
+.pop :hover{
+    transform: scale(1.03);
 }
