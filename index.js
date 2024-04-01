@@ -5,7 +5,7 @@ var cardproduct = [{
     price: 5000,
     description: 'White Hell Collection เสื้อ Collection Limited จากทาง Hells Shop ที่จะเปิดขายตั้งแต่ มกราคม-เมษายน เท่านั้น!!!' ,
     tag: 'New',
-    type: 'tops',
+    type: 'shirt',
     rating: '4.9⭐ | 15.1พัน Ratings | 59.1พัน ขายแล้ว',
 }, {
     id: 2,
@@ -14,7 +14,7 @@ var cardproduct = [{
     price: 5000,
     description: 'Black Hell Collection เสื้อ Collection Limited จากทาง Hells Shop ที่จะเปิดขายตั้งแต่ มกราคม-เมษายน เท่านั้น!!!' ,
     tag: 'New',
-    type: 'tops',
+    type: 'shirt',
     rating: '5.0⭐ | 18.8พัน Ratings | 68.8พัน ขายแล้ว',
 }, {
     id: 3,
@@ -23,7 +23,7 @@ var cardproduct = [{
     price: 5000,
     description: 'Red Hell Collection เสื้อ Collection ใหม่จากทาง Hells Shop มี 6 สีให้เลือกซื้อตามใจชอบ!!' ,
     tag: 'New',
-    type: 'tops',
+    type: 'shirt',
     rating: '4.7⭐ | 12.1พัน Ratings | 55.8พัน ขายแล้ว',
 }, {
     id: 4,
@@ -32,7 +32,7 @@ var cardproduct = [{
     price: 5000,
     description: 'Green Hell Collection เสื้อ Collection ใหม่จากทาง Hells Shop มี 6 สีให้เลือกซื้อตามใจชอบ!!' ,
     tag: 'New',
-    type: 'tops',
+    type: 'shirt',
     rating: '4.5⭐ | 10.2พัน Ratings | 47.5พัน ขายแล้ว',
 }, {
     id: 5,
@@ -41,7 +41,7 @@ var cardproduct = [{
     price: 5000,
     description: 'Orange Hell Collection เสื้อ Collection ใหม่จากทาง Hells Shop มี 6 สีให้เลือกซื้อตามใจชอบ!!' ,
     tag: 'New',
-    type: 'tops',
+    type: 'shirt',
     rating: '4.2⭐ | 9.1พัน Ratings | 41.8พัน ขายแล้ว',
 }, {
     id: 6,
@@ -50,7 +50,7 @@ var cardproduct = [{
     price: 5000,
     description: 'Grey Hell Collection เสื้อ Collection ใหม่จากทาง Hells Shop มี 6 สีให้เลือกซื้อตามใจชอบ!!' ,
     tag: 'New',
-    type: 'tops',
+    type: 'shirt',
     rating: '4.8⭐ | 13.1พัน Ratings | 57.8พัน ขายแล้ว',
 }, {
     id: 7,
@@ -111,9 +111,9 @@ var cardproduct = [{
 $(document).ready(() => {
     var html = '';
     for (let i = 0; i < cardproduct.length; i++) {
-        html += `<div class="product-item col-6 ${cardproduct[i].type}">
+        html += `<div class="product-item col-12 col-xl-4 ${cardproduct[i].type}">
                     <div class="card h-100 pop">
-                        <a href="Top1.html"><img src="${cardproduct[i].img}" class="card-img-top" alt="..."></a>
+                        <img src="${cardproduct[i].img}" class="card-img-top" alt="...">
                         <div class="card-body">
                          <h5><span class="badge text-bg-danger">${cardproduct[i].tag}</span> ${cardproduct[i].name}</h5>
                         <p class="card-text">${cardproduct[i].description} <br><br><br> <h3>฿${numberWithCommas(cardproduct[i].price)}</h3> </p>
@@ -140,9 +140,9 @@ function searchitem(elem) {
     var html = '';
     for (let i = 0; i < cardproduct.length; i++) {
         if(cardproduct[i].name.includes(value)) {
-            html += `<div class="product-item col-6 ${cardproduct[i].type}">
+            html += `<div class="product-item col-12 col-xl-4 ${cardproduct[i].type}">
                             <div class="card h-100 pop">
-                                <a href="Top1.html"><img src="${cardproduct[i].img}" class="card-img-top" alt="..."></a>
+                                <img src="${cardproduct[i].img}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                 <h5><span class="badge text-bg-danger">${cardproduct[i].tag}</span> ${cardproduct[i].name}</h5>
                                 <p class="card-text">${cardproduct[i].description} <br><br><br> <h3>฿${numberWithCommas(cardproduct[i].price)}</h3> </p>
@@ -156,5 +156,16 @@ function searchitem(elem) {
         $("#card_toplist").html(`<h2>Not Found</h2>`);
     } else {
         $("#card_toplist").html(html);
+    }
+}
+
+function searchproduct(param) {
+    console.log(param)
+    $(".product-item").css('display', 'none')
+    if(param == 'all') {
+        $(".product-item").css('display', 'block')
+    }
+    else {
+        $("."+param).css('display', 'block')
     }
 }

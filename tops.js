@@ -88,7 +88,7 @@ function searchitem(elem) {
         if(cardtop[i].name.includes(value)) {
             html += `<div class="product-item col-6 ${cardtop[i].type}">
                             <div class="card h-100 pop">
-                                <a href="Top1.html"><img src="${cardtop[i].img}" class="card-img-top" alt="..."></a>
+                                <img src="${cardtop[i].img}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                 <h5><span class="badge text-bg-danger">${cardtop[i].tag}</span> ${cardtop[i].name}</h5>
                                 <p class="card-text">${cardtop[i].description} <br><br><br> <h3>฿${numberWithCommas(cardtop[i].price)}</h3> </p>

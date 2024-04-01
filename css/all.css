@@ -56,7 +56,7 @@
     transition: 0.3s;
 }
 
-.pop :hover{
+.pop:hover{
     transform: scale(1.03);
 }
 
@@ -99,4 +99,37 @@
 
 .product-item{
     color: black;
+}
+
+.sidebar-t{
+    width: 20%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-t{
+    width: 80%;
+    padding: 10px;
+}
+
+.box{
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+}
+
+.sidebar-item{
+    background: rgb(247, 247, 247);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: black;
+    transition: 0.3s;
+}
+
+.sidebar-item:hover{
+    background: black;
+    color: white;
 }
