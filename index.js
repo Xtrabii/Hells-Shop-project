@@ -3,7 +3,7 @@ var cardproduct = [{
     img: 'images/Top1.png',
     name: 'White Hell Collection',
     price: 5000,
-    description: 'White Hell Collection เสื้อ Collection Limited จากทาง Hells Shop ที่จะเปิดขายตั้งแต่ มกราคม-เมษายน เท่านั้น!!!' ,
+    description: 'White Hell Collection เสื้อ Collection ใหม่จากทาง Hells Shop มี 6 สีให้เลือกซื้อตามใจชอบ!!' ,
     tag: 'New',
     type: 'shirt',
     rating: '4.9⭐ | 15.1พัน Ratings | 59.1พัน ขายแล้ว',
@@ -12,7 +12,7 @@ var cardproduct = [{
     img: 'images/Top2.png',
     name: 'Black Hell Collection',
     price: 5000,
-    description: 'Black Hell Collection เสื้อ Collection Limited จากทาง Hells Shop ที่จะเปิดขายตั้งแต่ มกราคม-เมษายน เท่านั้น!!!' ,
+    description: 'Black Hell Collection เสื้อ Collection ใหม่จากทาง Hells Shop มี 6 สีให้เลือกซื้อตามใจชอบ!!' ,
     tag: 'New',
     type: 'shirt',
     rating: '5.0⭐ | 18.8พัน Ratings | 68.8พัน ขายแล้ว',
@@ -83,7 +83,7 @@ var cardproduct = [{
     id: 10,
     img: 'images/bottom4.png',
     name: 'Black Sweat Pants',
-    price: 5000,
+    price: 3500,
     description: 'กางเกงวอร์มขายาวสีดำ จากร้าน Hells Shop' ,
     tag: 'New',
     type: 'bottoms',
@@ -92,7 +92,7 @@ var cardproduct = [{
     id: 11,
     img: 'images/bottom5.png',
     name: 'Camouflage Shorts',
-    price: 5000,
+    price: 2000,
     description: 'กางเกงวอร์มขาสั้นลายพลาง จากร้าน Hells Shop' ,
     tag: 'New',
     type: 'bottoms',
@@ -101,7 +101,7 @@ var cardproduct = [{
     id: 12,
     img: 'images/bottom6.png',
     name: 'Pink Sweat Shorts',
-    price: 5000,
+    price: 2500,
     description: 'กางเกงวอร์มขาสั้นสีชมพู จากร้าน Hells Shop' ,
     tag: 'New',
     type: 'bottoms',
@@ -111,7 +111,7 @@ var cardproduct = [{
 $(document).ready(() => {
     var html = '';
     for (let i = 0; i < cardproduct.length; i++) {
-        html += `<div class="product-item col-12 col-xl-4 ${cardproduct[i].type}">
+        html += `<div data-bs-toggle="modal" data-bs-target="#productModal" onclick="openProductDetail(${i})" class="product-item col-12 col-xl-4 ${cardproduct[i].type}">
                     <div class="card h-100 pop">
                         <img src="${cardproduct[i].img}" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -140,7 +140,7 @@ function searchitem(elem) {
     var html = '';
     for (let i = 0; i < cardproduct.length; i++) {
         if(cardproduct[i].name.includes(value)) {
-            html += `<div class="product-item col-12 col-xl-4 ${cardproduct[i].type}">
+            html += `<div data-bs-toggle="modal" data-bs-target="#productModal" onclick="openProductDetail(${i})" class="product-item col-12 col-xl-4 ${cardproduct[i].type}">
                             <div class="card h-100 pop">
                                 <img src="${cardproduct[i].img}" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -167,5 +167,81 @@ function searchproduct(param) {
     }
     else {
         $("."+param).css('display', 'block')
+    }
+}
+
+var productindex = 0;
+function openProductDetail(index) {
+    productindex = index;
+    console.log(productindex)
+    $("#productModal").css('display' , 'flex')
+    $("#mdd-img").attr('src', cardproduct[index].img);
+    $("#mdd-name").text(cardproduct[index].name)
+    $("#mdd-price").text('฿' + numberWithCommas(cardproduct[index].price))
+    $("#mdd-desc").text(cardproduct[index].description)
+}
+
+var cart = [];
+function addtocart() {
+    var pass = true;
+
+    for (let i = 0; i < cart.length; i++) {
+        if( productindex == cart[i].index ) {
+            console.log('found same product')
+            cart[i].count++;
+            pass = false;
+        }
+    }
+
+    if(pass) {
+        var obj = {
+            index: productindex,
+            id: cardproduct[productindex].id,
+            name: cardproduct[productindex].name,
+            price: cardproduct[productindex].price,
+            img: cardproduct[productindex].img,
+            count: 1
+        };
+        cart.push(obj)
+    }
+    console.log(cart)
+      
+    Swal.fire({
+        icon: 'success',
+        title: 'Add ' + cardproduct[productindex].name + ' to cart!!!'
+    })
+    $("#countcart").css('display','flex').text(cart.length)
+}
+
+function openCart() {
+    $('#modalCart').css('display','flex')
+    rendercart();
+}
+
+function rendercart() {
+    if(cart.length > 0) {
+        var html = '';
+        for (let i = 0; i < cart.length; i++) {
+            html += `<div class="modalcart-list">
+                        <div class="modalcart-content">
+                        <div class="modalcart-left">
+                            <img class="me-3" src="${cart[i].img}">
+                            <div class="modalcart-detail">
+                            <p>${cart[i].name}</p>
+                            <p>฿${cart[i].price}</p>
+                            </div>
+                        </div>
+                        <div class="modalcart-right">
+                            <p class="addout">-</p>
+                            <p style="margin: 0 70px;">${cart[i].count}</p>
+                            <p class="addout">+</p>
+                        </div>
+                        </div>
+                    </div>`;
+        }
+        $("#mycart").html(html)
+    }
+    else {
+        $("#mycart").html(`<p>Not found product list</p>`)
     }
 }

@@ -14,6 +14,8 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </head>
 <body class="bg">
@@ -31,10 +33,11 @@
         <li><a href="product.html" class="nav-link px-2 link-body-emphasis">Product</a></li>
       </ul>
 
+      <!-- cart -->
       <div class="pop">
-        <div class="nav-profile-cart me-4">
-          <i class="fas fa-cart-shopping"><a href="#"></a></i>
-          <div class="countcart">
+        <div onclick="openCart()" class="nav-profile-cart me-4">
+          <i class="fas fa-cart-shopping" data-bs-toggle="modal" data-bs-target="#cartModal"></i>
+          <div id="countcart" class="countcart" style="display: none;">
             5
           </div>
         </div>
@@ -60,69 +63,16 @@
   </div>
 </nav>
 
-<!--Dividers-->
-<!-- <div class="container">
-    <div class="row">
-        <div class="col"> 
-
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a style="Text-decoration: none" href="main.html">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Tops</li>
-                </ol>
-              </nav>
-
-        </div>
-    </div>
-</div>     -->
-
-
-<!-- <div class="box">
-  <div class="sidebar-t">
-    <div class="col-4 d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
-      <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <span class="fs-4">Hells Shop</span></a>
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a href="#" class="nav-link link-body-emphasis">
-            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-            All Product
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link link-body-emphasis">
-            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-            Tops
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link link-body-emphasis">
-            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-            Bottoms
-          </a>
-        </li>
-      </ul>  
-    </div>
-  </div>
-
-  <div class="product-t">
-    <div class="container">
-      <div id="card_toplist" class="row row-cols-1 row-cols-md-3 g-4 mb-4">
-      </div>
-    </div>
-  </div>
-</div> -->
-
+<!-- sidebar -->
 <div class="box">
   <div class="sidebar-t col-3 col-xl-2">
-    <a onclick="searchproduct('all')" class="noline pop sidebar-item"> 
+    <a onclick="searchproduct('all')" class="shadow noline pop sidebar-item"> 
       All
     </a>
-    <a onclick="searchproduct('shirt')" class="noline pop sidebar-item"> 
+    <a onclick="searchproduct('shirt')" class="shadow noline pop sidebar-item"> 
       Tops
     </a>
-    <a onclick="searchproduct('bottoms')" class="noline pop sidebar-item"> 
+    <a onclick="searchproduct('bottoms')" class="shadow noline pop sidebar-item"> 
       Bottoms 
     </a>
     
@@ -132,6 +82,86 @@
         <div id="card_toplist" class="row row-cols-1 row-cols-md-3 g-4 mb-4">
         </div>
       </div>
+  </div>
+</div>
+
+<!-- Modal-product -->
+
+    <!-- <div class="modalproduct" id="productModal" style="display: none;">
+      <div class="modalproduct-bg">
+        <div class="modalproduct-page">
+          <h2>Details</h2>
+          <hr>
+          <div class="modalproduct-content">
+            <img class="modalproduct-img" src="images/Top1.png">
+            <div class="modalproduct-detail">
+                <h2>White Hell Collection</h2>
+                <p style="font-size: 25px;">฿5000</p>
+                <p style="color: gray;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat alias quo facilis pariatur quos similique corporis quod impedit debitis. Quisquam, cum! Voluptas quas aspernatur ad. Aliquid voluptates soluta tenetur ipsum.</p>
+                <div class="btn-control">
+                  <button type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 60px; --bs-btn-font-size: 20px;">
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-dark" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 40px; --bs-btn-font-size: 20px;">
+                      Add to cart
+                  </button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>  -->
+
+    <!-- Modal-product -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Detail</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="modalproduct-content">
+              <img id="mdd-img" class="modalproduct-img" src="images/Top1.png">
+              <div class="modalproduct-detail">
+                  <h2 id="mdd-name">White Hell Collection</h2>
+                  <p id="mdd-price" style="font-size: 25px;">฿5000</p>
+                  <p id="mdd-desc" style="color: gray;">White Hell Collection เสื้อ Collection Limited จากทาง Hells Shop ที่จะเปิดขายตั้งแต่ มกราคม-เมษายน เท่านั้น!!!</p>
+              </div>
+            </div>
+    
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 65px; --bs-btn-font-size: 20px;">
+              Close
+            </button>
+            <button onclick="addtocart()" class="btn btn-dark" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 45px; --bs-btn-font-size: 20px;">
+                Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+<!-- Modal-cart -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered" id="modalCart">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Cart</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="mycart" class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 35px; --bs-btn-font-size: 20px;">
+          Close
+        </button>
+        <button type="button" class="btn btn-dark" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 45px; --bs-btn-font-size: 20px;">
+            Buy
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 

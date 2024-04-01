@@ -14,6 +14,8 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </head>
 <body class="bg">
@@ -30,11 +32,11 @@
         <li><a href="main.html" class="nav-link px-2 link-body-emphasis">Home</a></li>
         <li><a href="product.html" class="nav-link px-2 link-body-emphasis">Product</a></li>
       </ul>
-
+      <!-- cart -->
       <div class="pop">
         <div class="nav-profile-cart me-4">
           <i class="fas fa-cart-shopping" data-bs-toggle="modal" data-bs-target="#cartModal"></i>
-          <div class="countcart">
+          <div id="countcart" class="countcart" style="display: none;">
             5
           </div>
         </div>
@@ -197,16 +199,31 @@
     </div>
 </div>
 
-<!-- detail -->
-<div class="container">
-  <div id="card_toplist" class="row row-cols-1 row-cols-md-3 g-4 mb-4">
-      
+<!-- siddebar -->
+<div class="box">
+  <div class="sidebar-t col-3 col-xl-2">
+    <a onclick="searchproduct('all')" class="shadow noline pop sidebar-item"> 
+      All
+    </a>
+    <a onclick="searchproduct('shirt')" class="shadow noline pop sidebar-item"> 
+      Tops
+    </a>
+    <a onclick="searchproduct('bottoms')" class="shadow noline pop sidebar-item"> 
+      Bottoms 
+    </a>
+    
+  </div>
+  <div class="product-t">
+      <div class="container">
+        <div id="card_toplist" class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+        </div>
+      </div>
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal-cart -->
 <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="cartModalScrollableTitle">Cart</h1>
@@ -223,9 +240,90 @@
               </div>
             </div>
             <div class="modalcart-right">
-              <p class="btnc">-</p>
-              <p style="margin: 0 20px;">1</p>
-              <p class="btnc">+</p>
+              <p class="addout">-</p>
+              <p style="margin: 0 70px;">1</p>
+              <p class="addout">+</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="modalcart-list">
+          <div class="modalcart-content">
+            <div class="modalcart-left">
+              <img class="me-3" src="images/Top1.png">
+              <div class="modalcart-detail">
+                <p>White Hell Collection</p>
+                <p>฿5000</p>
+              </div>
+            </div>
+            <div class="modalcart-right">
+              <p class="addout">-</p>
+              <p style="margin: 0 70px;">1</p>
+              <p class="addout">+</p>
+            </div>
+          </div>
+        </div>
+        <div class="modalcart-list">
+          <div class="modalcart-content">
+            <div class="modalcart-left">
+              <img class="me-3" src="images/Top1.png">
+              <div class="modalcart-detail">
+                <p>White Hell Collection</p>
+                <p>฿5000</p>
+              </div>
+            </div>
+            <div class="modalcart-right">
+              <p class="addout">-</p>
+              <p style="margin: 0 70px;">1</p>
+              <p class="addout">+</p>
+            </div>
+          </div>
+        </div>
+        <div class="modalcart-list">
+          <div class="modalcart-content">
+            <div class="modalcart-left">
+              <img class="me-3" src="images/Top1.png">
+              <div class="modalcart-detail">
+                <p>White Hell Collection</p>
+                <p>฿5000</p>
+              </div>
+            </div>
+            <div class="modalcart-right">
+              <p class="addout">-</p>
+              <p style="margin: 0 70px;">1</p>
+              <p class="addout">+</p>
+            </div>
+          </div>
+        </div>
+        <div class="modalcart-list">
+          <div class="modalcart-content">
+            <div class="modalcart-left">
+              <img class="me-3" src="images/Top1.png">
+              <div class="modalcart-detail">
+                <p>White Hell Collection</p>
+                <p>฿5000</p>
+              </div>
+            </div>
+            <div class="modalcart-right">
+              <p class="addout">-</p>
+              <p style="margin: 0 70px;">1</p>
+              <p class="addout">+</p>
+            </div>
+          </div>
+        </div>
+        <div class="modalcart-list">
+          <div class="modalcart-content">
+            <div class="modalcart-left">
+              <img class="me-3" src="images/Top1.png">
+              <div class="modalcart-detail">
+                <p>White Hell Collection</p>
+                <p>฿5000</p>
+              </div>
+            </div>
+            <div class="modalcart-right">
+              <p class="addout">-</p>
+              <p style="margin: 0 70px;">1</p>
+              <p class="addout">+</p>
             </div>
           </div>
         </div>
