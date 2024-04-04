@@ -174,11 +174,12 @@ var productindex = 0;
 function openProductDetail(index) {
     productindex = index;
     console.log(productindex)
-    $("#productModal").css('display' , 'flex')
+    $("#productModal").css('display' , 'flex');
     $("#mdd-img").attr('src', cardproduct[index].img);
-    $("#mdd-name").text(cardproduct[index].name)
-    $("#mdd-price").text('฿' + numberWithCommas(cardproduct[index].price))
-    $("#mdd-desc").text(cardproduct[index].description)
+    $("#mdd-name").text(cardproduct[index].name);
+    $("#mdd-desc").text(cardproduct[index].description);
+    $("#mdd-price").text('฿' + numberWithCommas(cardproduct[index].price));
+    $("#mdd-rate").text(cardproduct[index].rating);
 }
 
 var cart = [];
@@ -228,13 +229,13 @@ function rendercart() {
                             <img class="me-3" src="${cart[i].img}">
                             <div class="modalcart-detail">
                             <p>${cart[i].name}</p>
-                            <p>฿${cart[i].price}</p>
+                            <p>฿${numberWithCommas(cart[i].price * cart[i].count)}</p>
                             </div>
                         </div>
                         <div class="modalcart-right">
-                            <p class="addout">-</p>
-                            <p style="margin: 0 70px;">${cart[i].count}</p>
-                            <p class="addout">+</p>
+                            <p onclick="deinitems('-' , ${i})" class="addout">-</p>
+                            <p id="countitems${i}" style="margin: 0 70px;">${cart[i].count}</p>
+                            <p onclick="deinitems('+' , ${i})"  class="addout">+</p>
                         </div>
                         </div>
                     </div>`;
@@ -243,5 +244,47 @@ function rendercart() {
     }
     else {
         $("#mycart").html(`<p>Not found product list</p>`)
+    }
+}
+
+function deinitems(action, index) {
+    if(action == '-') {
+        if(cart[index].count > 0) {
+            cart[index].count--;
+            $("#countitems"+index).text(cart[index].count)
+
+            if(cart[index].count <= 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Are you sure to delete?',
+                    showConfirmButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Delete',
+                    cancelButtonText: 'Cancel'
+                }).then((res) => {
+                    if(res.isConfirmed) {
+                        cart.splice(index, 1)
+                        console.log(cart)
+                        rendercart();
+                        $("#countcart").css('display','flex').text(cart.length)
+
+                        if(cart.length <= 0) {
+                            $("#countcart").css('display','none')
+                         }
+                    }
+                    else {
+                        cart[index].count++;
+                        $("#countitems"+index).text(cart[index].count)
+                        rendercart();
+                      }
+                })
+            }
+            rendercart();
+        }
+    }
+    else if(action == '+') {
+        cart[index].count++;
+        $("#countitems"+index).text(cart[index].count)
+        rendercart();
     }
 }
