@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Hells Shop | Product</title>
     <!--custom css-->
     <link rel="stylesheet" href="css/all.css">
     <!-- bootstrap -->
@@ -29,9 +29,9 @@
         <img class="d-inline-block align-text-top me-3 slidecurve" src="images/Hell logo.png" width="40" height="40">
       </a>
       
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="main.html" class="nav-link px-2 link-body-emphasis">Home</a></li>
-        <li><a href="product.html" class="nav-link px-2 link-body-emphasis">Product</a></li>
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-underline">
+        <li><a href="main.html" class="nav-link px-2 link-body-emphasis "><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="product.html" class="nav-link active px-2 link-body-emphasis"><i class="fa-solid fa-bag-shopping"></i> Product</a></li>
       </ul>
 
       <!-- cart -->
@@ -39,7 +39,6 @@
         <div onclick="openCart()" class="nav-profile-cart me-4">
           <i class="fas fa-cart-shopping" data-bs-toggle="modal" data-bs-target="#cartModal"></i>
           <div id="countcart" class="countcart" style="display: none;">
-            5
           </div>
         </div>
       </div>
@@ -68,13 +67,13 @@
 <div class="box">
   <div class="sidebar-t col-3 col-xl-2">
     <a onclick="searchproduct('all')" class="shadow noline pop sidebar-item"> 
-      All
+      <i class="fa-solid fa-bag-shopping"></i> All
     </a>
     <a onclick="searchproduct('shirt')" class="shadow noline pop sidebar-item"> 
-      Tops
+      <i class="fa-solid fa-shirt"></i> Tops
     </a>
     <a onclick="searchproduct('bottoms')" class="shadow noline pop sidebar-item"> 
-      Bottoms 
+      <i class="fa-solid fa-socks"></i> Bottoms 
     </a>
     
   </div>
@@ -87,33 +86,7 @@
 </div>
 
 <!-- Modal-product -->
-
-    <!-- <div class="modalproduct" id="productModal" style="display: none;">
-      <div class="modalproduct-bg">
-        <div class="modalproduct-page">
-          <h2>Details</h2>
-          <hr>
-          <div class="modalproduct-content">
-            <img class="modalproduct-img" src="images/Top1.png">
-            <div class="modalproduct-detail">
-                <h2>White Hell Collection</h2>
-                <p style="font-size: 25px;">฿5000</p>
-                <p style="color: gray;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat alias quo facilis pariatur quos similique corporis quod impedit debitis. Quisquam, cum! Voluptas quas aspernatur ad. Aliquid voluptates soluta tenetur ipsum.</p>
-                <div class="btn-control">
-                  <button type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 60px; --bs-btn-font-size: 20px;">
-                    Close
-                  </button>
-                  <button type="button" class="btn btn-dark" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 40px; --bs-btn-font-size: 20px;">
-                      Add to cart
-                  </button>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>  -->
-
-    <!-- Modal-product -->
-    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
@@ -135,16 +108,16 @@
     
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 65px; --bs-btn-font-size: 20px;">
-              Close
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 65px; --bs-btn-font-size: 20px;">
+              <i class="fa-solid fa-xmark"></i> Close
             </button>
             <button onclick="addtocart()" class="btn btn-dark" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 45px; --bs-btn-font-size: 20px;">
-                Add to cart
+              <i class="fa-solid fa-cart-plus"></i> Add cart
             </button>
           </div>
         </div>
       </div>
-    </div> 
+</div> 
 
 <!-- Modal-cart -->
 <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
@@ -156,14 +129,14 @@
       </div>
       <div id="mycart" class="modal-body">
         <!-- rendercart js -->
-
       </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 35px; --bs-btn-font-size: 20px;">
-          Close
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 35px; --bs-btn-font-size: 20px;">
+          <i class="fa-solid fa-xmark"></i> Close
         </button>
-        <button onclick="buynow()" type="button" class="btn btn-dark" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 45px; --bs-btn-font-size: 20px;">
-            Buy
+        <button type="button" class="btn btn-dark" style="--bs-btn-padding-y: 10px; --bs-btn-padding-x: 45px; --bs-btn-font-size: 20px;">
+          <a onclick="buynow()" class="noline" style="color: white;">  Buy
         </button>
       </div>
     </div>

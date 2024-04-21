@@ -130,6 +130,84 @@ function openCart() {
 function rendercart() {
     if(cart.length > 0) {
         var html = '';
+        html += `<div class="container">
+                    <div class="row g-5">
+                    <div class="col-md-12 col-lg-12">
+                        <h4 class="mb-3">Billing address</h4>
+                        <form class="needs-validation" novalidate="">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                            <label for="firstName" class="form-label">First name</label>
+                            <input type="text" class="form-control" id="txtFName" placeholder="" value="" required="">
+                            <div class="invalid-feedback">
+                                Valid first name is required.
+                            </div>
+                            </div>
+                
+                            <div class="col-sm-6">
+                            <label for="lastName" class="form-label">Last name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                            </div>
+                
+                            <div class="col-12">
+                            <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
+                            <input type="email" class="form-control" id="email" placeholder="yourmail@gmail.com">
+                            <div class="invalid-feedback">
+                                Please enter a valid email address for shipping updates.
+                            </div>
+                            </div>
+                
+                            <div class="col-12">
+                            <label for="address" class="form-label">Tel.</label>
+                            <input type="text" class="form-control" id="tel" placeholder="0642345678" required="">
+                            <div class="invalid-feedback">
+                                Please enter your Telephone Number.
+                            </div>
+                            </div>
+                
+                            <div class="col-12">
+                            <label for="address2" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address2" placeholder="ที่อยู่ แขวง เขต">
+                            </div>
+                
+                            <div class="col-md-5">
+                            <label for="country" class="form-label">Country</label>
+                            <select class="form-select" id="country" required="">
+                                <option value="">Choose...</option>
+                                <option>กรุงเทพมหานคร</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a valid country.
+                            </div>
+                            </div>
+                
+                            <div class="col-md-4">
+                            <label for="state" class="form-label">State</label>
+                            <select class="form-select" id="state" required="">
+                                <option value="">Choose...</option>
+                                <option>ลาดกระบัง</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please provide a valid state.
+                            </div>
+                            </div>
+                
+                            <div class="col-md-3">
+                            <label for="zip" class="form-label">Zip</label>
+                            <input type="text" class="form-control" id="zip" placeholder="" value="10520" required="">
+                            <div class="invalid-feedback">
+                                Zip code required.
+                            </div>
+                            </div>
+                        </div>
+                        <br>
+                        </form>
+                    </div>
+                    </div>
+                </div>`;
         for (let i = 0; i < cart.length; i++) {
             html += `<div class="modalcart-list">
                         <div class="modalcart-content">
@@ -148,6 +226,7 @@ function rendercart() {
                         </div>
                     </div>`;
         }
+    
         $("#mycart").html(html)
     }
     else {
@@ -198,26 +277,43 @@ function deinitems(action, index) {
 }
 
 function buynow() {
+    var firstName = $('#txtFName').val();
+    var lastName = $('#lastName').val();
+    var email = $('#email').val();
+    var tel = $('#tel').val();
+    var address = $('#address2').val();
+    var country = $('#country').val();
+    var state = $('#state').val();
+    var zip = $('#zip').val();
     $.ajax({
         method: 'post',
         url: './api/buynow.php',
         data: {
-            product: cart
+            product: cart,
+            fname: firstName,
+            lname: lastName,
+            email: email,
+            tel: tel,
+            address: address,
+            country: country,
+            state: state,
+            zip: zip
         },  success: function(response) {
             console.log(response)
             if(response.RespCode == 200) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Thank you',
-                    html: ` <p> Amount : ${response.Amount.Amount}</p>
-                            <p> Shipping : ${response.Amount.Shipping}</p>
-                            <p> Vat : ${response.Amount.Vat}</p>
-                            <p> ราคารวมทั้งสิ้น : ${response.Amount.Netamount}</p>
-                            `
+                    html: ` <p> Amount : ${response.Amount.Amount} ฿</p>
+                            <p> Shipping : ${response.Amount.Shipping} ฿</p>
+                            <p> Vat : ${response.Amount.Vat} ฿</p>
+                            <p> ราคารวมทั้งสิ้น : ${response.Amount.Netamount} ฿</p>
+                            <p> ระยะเวลาจัดส่ง 7 - 10 วัน</p>`
                 }).then((res) => {
                     if(res.isConfirmed) {
                         cart = [];
                         $("#countcart").css('display','none')
+                        $('#cartModal').modal('hide');
                     }
                 })
             }

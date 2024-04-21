@@ -3,7 +3,15 @@
 
     try {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+            $fname = $_POST['fname'];
+            $lname = $_POST['lname'];
+            $email = $_POST['email'];
+            $tel = $_POST['tel'];
+            $address = $_POST['address'];
+            $country = $_POST['country'];
+            $state = $_POST['state'];
+            $zip = $_POST['zip'];
+            $product = $_POST['product'];
             $object = new stdClass();
             $amount = 0;
             $product = $_POST['product'];
@@ -36,9 +44,9 @@
                 $mil = time() * 1000;
                 $updated_at = date("Y-m-d h:i:sa");
 
-                $stmt = $db->prepare('insert into transaction (transid,orderlist,amount,shipping,vat,netamount,operation,mil,updated_at) values (?,?,?,?,?,?,?,?,?)');
+                $stmt = $db->prepare('insert into transaction (transid,orderlist,amount,shipping,vat,netamount,operation,mil,updated_at,fname,lname,email,tel,address,country,state,zip) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
                 if($stmt->execute([
-                    $transid, $product, $amount, $shipping, $vat, $netamount, 'PENDING', $mil, $updated_at
+                    $transid, $product, $amount, $shipping, $vat, $netamount, 'PENDING', $mil, $updated_at, $fname, $lname, $email, $tel, $address, $country, $state, $zip
                 ])) {
                     $object->RespCode = 200;
                     $object->RespMessage = 'success';
